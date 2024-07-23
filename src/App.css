@@ -1,3 +1,8 @@
+
+.navbar{
+    height: 205px;
+}
+
 .coupon{
     display: flex;
     justify-content: space-evenly;
@@ -93,9 +98,31 @@ input::placeholder{
     margin-top: -10px;
 }
 
-@media(max-width:700px) {
+.fourth-layer-navbar{
+    width: 65%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-top: 10px;
+    height: 51px;
+    background-color: #ffffff;
+}
+
+.category{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #F2F4F5;
+    padding: 11px;
+}
+
+
+
+@media(max-width:1125px) {
     .navbar{
         width: 100%;
+        height: auto;
     }
     .coupon{
         display: flex;
@@ -119,7 +146,40 @@ input::placeholder{
         margin-right: 5px;
 
     }
+    .fourth-layer-navbar{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 2.5px;
+        width: 100%;
+        height: 55px;
+    }
+
+    .category{
+        padding: 5px;
+    }
     
 }
+
+/* Hero section begins here */
+.hero{
+    display: grid;
+    grid-template-columns: 63% 37%;
+    width: 59%;
+    margin: auto;
+    border: 2px solid green;
+    height: auto;
+    padding: 10px;
+}
+
+@media(max-width:1125px) {
+    .hero{
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        height: auto;
+    }
+}
+
 
 

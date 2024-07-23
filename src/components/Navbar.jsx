@@ -1,7 +1,10 @@
 import usFlag from  '../assets/images/usflag.png'
 import madalorian from '../assets/images/mandalorian.png'
+import ArrowCounterClockwise from '../assets/images/ArrowsCounterClockwise.png'
+import info from '../assets/images/Info.png'
 import { useState } from 'react'
-import { FiArrowDown, FiArrowUp, FiFacebook, FiHeart, FiImage, FiSearch, FiShoppingCart, FiTwitter, FiUser, FiYoutube } from "react-icons/fi";
+import { IoIosArrowDown, IoIosArrowUp, IoIosLocate, IoIosMap } from "react-icons/io";
+import { FiFacebook, FiHeadphones, FiHeart, FiImage, FiMapPin, FiPhoneCall, FiSearch, FiShoppingCart, FiTwitter, FiUploadCloud, FiUser, FiYoutube } from "react-icons/fi";
 
 
 
@@ -13,7 +16,8 @@ function Navbar() {
     const [curValue, setCurValue] = useState('USD')
 
     return (
-        <div className="bg-[#1B6392] h-[150px] lg:w-[90%] m-[auto] navbar">
+        <>
+        <div className="bg-[#1B6392] lg:w-[90%] m-[auto] navbar">
             {discount &&
                 <div className="bg-[#191C1F] h-[40px]">
                     <div className='coupon lg:w-[90%] m-[auto]' >
@@ -34,10 +38,10 @@ function Navbar() {
                 </div>
             }
             <div>
-                <div className='h-10 lg:w-[100%] m-[auto] text-[#FFFFFF] text-[12px] second-layer-navbar '>
-                    <p className='lg:ml-[-29px] pt-1 lg:pt-0 ml-1'>Welcome to Hapmart Online Ecommerce store </p>
+                <div className={discount ? 'h-10 lg:w-[100%] m-[auto] text-[#FFFFFF] text-[12px] second-layer-navbar':'h-10 lg:w-[100%] m-[auto] text-[#FFFFFF] lg:mt-5 mt-3 text-[12px] second-layer-navbar'}>
+                    <p className='lg:ml-[-29px] pt-1 lg:pt-0 ml-1 md:ml-[13px]'>Welcome to Hapmart Online Ecommerce store </p>
                     <div className='flex gap-5'>
-                        <div className='gap-3 social-media lg:ml-0 ml-1 pt-1 md:ml-[-10px] md:mr-[30px] lg:mr-0'>
+                        <div className='gap-3 social-media lg:ml-0 ml-1 pt-1 md:ml-[13px] md:mr-[30px] lg:mr-0'>
                            <p>Follow us</p>
                            <FiTwitter color='white' className='cursor-pointer'/>
                            <FiFacebook color='white' size={15} className='cursor-pointer'/>
@@ -45,11 +49,11 @@ function Navbar() {
                         </div>|
                        <div className='social-media' onClick={() => setLanguage(!language)}>
                           <button>{langValue}</button>
-                          {language ? <FiArrowUp color='white'/> : <FiArrowDown/>}
+                          {language ? <IoIosArrowUp /> : <IoIosArrowDown />}
                        </div>
                         <div className='social-media' onClick={() => setCurrency(!currency)}>
                             <button>{curValue}</button>
-                            {currency ? <FiArrowUp color='white'/> : <FiArrowDown/>}
+                            {currency ? <IoIosArrowUp /> : <IoIosArrowDown />}
                         </div>
                         
                     </div>
@@ -57,8 +61,8 @@ function Navbar() {
             </div>
 
             <hr className='opacity-[0.4] mt-3 lg:mt-0'/>
-            <div className='lg:w-[100%] w-[99%] m-[auto] third-layer-navbar mt-3 ml-1'>
-                <p className='text-white font-bold lg:mr-[-150px] lg:ml-[-65px] md:ml-[-33px]'>HAPMART</p>
+            <div className={discount ? 'lg:w-[100%] w-[97%] md:w-[90%] m-[auto] third-layer-navbar mt-3 ml-1' : 'lg:w-[100%] w-[97%] m-[auto] third-layer-navbar mt-5 ml-1'}>
+                <p className='text-white font-bold lg:mr-[-150px] lg:ml-[-65px] md:ml-[10px]'>HAPMART</p>
                 <div className='lg:w-[350px] lg:ml-[-20px] search-box bg-white'>
                     <input type="search" placeholder='search anything here' 
                     className='w-[93%] border-none outline-none indent-2 text-[12px] p-1'/>
@@ -110,7 +114,44 @@ function Navbar() {
                     </div>
                 }
             </div>
+
+            <div className={discount ? 'bg-white h-[64px]' : 'bg-white mt-[40px]'}>
+                <div className='fourth-layer-navbar text-[12px] mt-7'>
+                    <div className='category'>
+                        <p>All Category</p>
+                        <IoIosArrowDown/>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                        <FiMapPin color='gray'/>
+                        <p>Track Order</p>
+                    </div>
+
+                    <div className='flex items-center gap-2'>
+                        <img src={ArrowCounterClockwise} alt="" className='w-3' />
+                        <p>Compare</p>
+                    </div>
+
+                    <div className='flex items-center gap-2'>
+                        <FiHeadphones color='gray'/>
+                        <p>Customer Support</p>
+                    </div>
+
+                    <div className='flex items-center lg:gap-24 gap-5'>
+                        <div className='flex items-center gap-3'>
+                            <img src={info} alt="" className='w-3' />
+                            <p>Need Help?</p>
+                        </div>
+
+                        <div className='flex items-center'>
+                            <FiPhoneCall color='gray'/>
+                            <p>+123-456-789</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+         <hr className='w-[90%] m-[auto]'/>
+        </>
     )
     
 }
