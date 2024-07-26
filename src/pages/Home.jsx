@@ -1,10 +1,10 @@
 import React from 'react'
 import Hero from '../components/Hero'
 
-function Home() {
+function Home({menu, isLogin, setIsLogin, userAuthPopUp}) {
   return (
     <div>
-      <Hero/>
+      <Hero menu={menu} isLogin={isLogin} setIsLogin={setIsLogin} userAuthPopUp={userAuthPopUp}/>
     </div>
   )
 }

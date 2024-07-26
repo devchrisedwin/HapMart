@@ -113,7 +113,6 @@ input::placeholder{
     display: flex;
     align-items: center;
     gap: 10px;
-    background-color: #F2F4F5;
     padding: 11px;
 }
 
@@ -167,9 +166,8 @@ input::placeholder{
     grid-template-columns: 63% 37%;
     width: 59%;
     margin: auto;
-    border: 2px solid green;
+    margin-top: 5px;
     height: auto;
-    padding: 10px;
 }
 
 @media(max-width:1125px) {
@@ -180,6 +178,7 @@ input::placeholder{
         height: auto;
     }
 }
+
 
 
 

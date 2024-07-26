@@ -8,12 +8,13 @@ import { FiFacebook, FiHeadphones, FiHeart, FiImage, FiMapPin, FiPhoneCall, FiSe
 
 
 
-function Navbar() {
+function Navbar({menu, setMenu, userAuthPopUp, setUserAuthPopUp}) {
     const [currency, setCurrency] = useState(false)
     const [language, setLanguage] = useState(false)
     const [discount, setDiscount] = useState(true)
     const [langValue, setLangValue] = useState('Eng')
     const [curValue, setCurValue] = useState('USD')
+    
 
     return (
         <>
@@ -61,7 +62,7 @@ function Navbar() {
             </div>
 
             <hr className='opacity-[0.4] mt-3 lg:mt-0'/>
-            <div className={discount ? 'lg:w-[100%] w-[97%] md:w-[90%] m-[auto] third-layer-navbar mt-3 ml-1' : 'lg:w-[100%] w-[97%] m-[auto] third-layer-navbar mt-5 ml-1'}>
+            <div className={discount ? 'lg:w-[100%] w-[97%] md:w-[90%] m-[auto] third-layer-navbar mt-3 ml-1' : 'lg:w-[100%] w-[97%] m-[auto] third-layer-navbar mt-12 ml-1'}>
                 <p className='text-white font-bold lg:mr-[-150px] lg:ml-[-65px] md:ml-[10px]'>HAPMART</p>
                 <div className='lg:w-[350px] lg:ml-[-20px] search-box bg-white'>
                     <input type="search" placeholder='search anything here' 
@@ -75,7 +76,7 @@ function Navbar() {
                         <div className='cart-count'>0</div>
                     </div>
                     <div><FiHeart color='white' className='cursor-pointer' /></div>
-                    <div><FiUser color='white' className='cursor-pointer' /></div>
+                    <div onClick={()=>setUserAuthPopUp(!userAuthPopUp)}><FiUser color='white' className='cursor-pointer' /></div>
                 </div>
 
                 {language && 
@@ -117,9 +118,9 @@ function Navbar() {
 
             <div className={discount ? 'bg-white h-[64px]' : 'bg-white mt-[40px]'}>
                 <div className='fourth-layer-navbar text-[12px] mt-7'>
-                    <div className='category'>
-                        <p>All Category</p>
-                        <IoIosArrowDown/>
+                    <div className={`category ${menu ? "bg-[#FA8232] text-white": "bg-[#F2F4F5]"} cursor-pointer`}>
+                        <p onClick={() => setMenu(!menu)}>All Category</p>
+                        {menu ? <IoIosArrowUp/> : <IoIosArrowDown/> }
                     </div>
                     <div className='flex items-center gap-2'>
                         <FiMapPin color='gray'/>
