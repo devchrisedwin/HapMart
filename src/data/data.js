@@ -12,7 +12,7 @@ import gamingpad from '../assets/images/gamepad2.png'
 const products = [
    {
         id:1,
-        name: 'Hp 8450 Pro',
+        name: 'Hp8450Pro',
         image: laptop,
         category: 'Computer & Laptop',
         type: 'laptop',
@@ -27,7 +27,7 @@ const products = [
     },
     {
         id:2,
-        name: 'Samsung KeyBoard',
+        name: 'SamsungKeyBoard',
         image: accessories,
         category: 'Computer Accessories',
         type: 'keyboard',
@@ -57,13 +57,22 @@ const products = [
     },
     {
         id:4,
-        name: 'Xiaomi FlipBud',
+        name: 'XiaomiFlipBud',
         image: Headphones,
-        category: 'HeadPhone'
+        category: 'HeadPhone',
+        type: 'earpod',
+        description: 'Get value for your money',
+        price: 22.99,
+        availability: true,
+        promo: '20.2%',
+        deal_type: 'HOT',
+        rating: 5,
+        arrival: 'new',
+        best_seller: true,
     },
     {
         id:5,
-        name: 'Super Fast Charger',
+        name: 'SuperFastCharger',
         image: smartphone,
         category: ' Mobile Accessories',
         type: 'charger',
@@ -78,7 +87,7 @@ const products = [
     },
     {
         id:6,
-        name: 'Xbox Console',
+        name: 'XboxConsole',
         image: gaming,
         category: 'Gaming Console',
         type: 'xbox',
@@ -93,7 +102,7 @@ const products = [
     },
     {
         id:7,
-        name: 'Camon A43',
+        name: 'CamonA43',
         image: camera,
         category: 'Camera & Photo',
         type: 'camera',
@@ -108,7 +117,7 @@ const products = [
     },
     {
         id:8,
-        name: 'Utra sony z4',
+        name: 'Utrasonyz4',
         image: Hommes,
         category: 'Tv & Home Appliances',
         type: 'tv',
@@ -138,7 +147,7 @@ const products = [
     },
     {
         id:10,
-        name: 'V8 Compass',
+        name: 'V8Compass',
         image: Headphones,
         category: 'GPS & Navigation',
         type: 'compass',
@@ -153,7 +162,7 @@ const products = [
     },
     {
         id:11,
-        name: 'Utra sony X670',
+        name: 'UtraSonyX670',
         image: Hommes,
         category: 'Warable Technology',
         type: 'cctv',
@@ -168,7 +177,7 @@ const products = [
     },
     {
         id:12,
-        name: 'Black Eagle',
+        name: 'BlackEagle',
         image: laptop,
         category: 'Warable Technology',
         type: 'censor camera',
@@ -183,7 +192,7 @@ const products = [
     },
     {
         id:13,
-        name: 'Iphone 12 pro',
+        name: 'Iphone12Pro',
         image: iphone12,
         category: 'SmartPhone',
         type: 'smartphone',
@@ -198,7 +207,7 @@ const products = [
     },
     {
         id:14,
-        name: 'Xbox Gaming pad',
+        name: 'XboxGamingPad',
         image: gamingpad,
         category: 'Gaming Console',
         type: 'smartphone',

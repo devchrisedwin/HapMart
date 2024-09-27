@@ -12,10 +12,13 @@ import trophy from '../assets/images/Trophy.png'
 import wallet from '../assets/images/CreditCard.png'
 import headphone from '../assets/images/Headphones.png'
 import { cartItemContext } from '../context/CartItem-Context'
+import { productDetailContext } from '../context/ProductDetail-Context'
+import { Link } from 'react-router-dom'
 
 
 function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
   const {handleAddToCart} = useContext(cartItemContext)
+  const {handleDetails} = useContext(productDetailContext)
 
   const [expiringDate, setExperingDate] = useState(16)
   const [hour, setHour] = useState(24)
@@ -199,6 +202,7 @@ function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
                     <div className="flex items-center mb-2">
                        <FiStar color='#FA8232' fill='#FA8232'/><FiStar color='#FA8232' fill='#FA8232'/><FiStar color='#FA8232' fill='#FA8232'/><FiStar color='#FA8232' fill='#FA8232'/>
                     </div>
+                    <Link to={`/product/${product.name}`}><button className='border p-2 mb-1' onClick={()=>handleDetails(product)}>View Product</button></Link>
                   </div>
                 </div>
             ))}
