@@ -1,0 +1,184 @@
+
+.navbar{
+    height: 205px;
+}
+
+.coupon{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.discount-rate{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.second-layer-navbar{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.third-layer-navbar{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.lang{
+    display: flex;
+    align-items: center;
+}
+
+.lang-value{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.lang-hidden{
+    /* display: none; */
+    position: relative;
+    left: -180px;
+    top: 65px;
+    width: 140px;
+    padding: 10px;
+}
+
+.currency{
+    /* display: none; */
+    position: relative;
+    left: -160px;
+    top: 45px;
+    width: 120px;
+    padding: 10px;
+}
+
+
+
+.cart{
+    position: relative;
+}
+
+.cart-count{
+    position: absolute;
+    right: -7px;
+    top: -12.5px;
+    background-color: #ffffff;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15px;
+    width: 15px;
+    font-size: 12px;
+    font-weight: bolder;
+    color: green;
+}
+
+.social-media{
+    display: flex;
+    align-items: center;
+}
+
+.search-box{
+    position: relative;
+}
+
+.search-icon{
+    position: absolute;
+    right: 2.5px;
+    top: 4.5px;
+    padding: 0.6px;
+    margin-right: 10px;
+}
+input::placeholder{
+    margin-top: -10px;
+}
+
+.fourth-layer-navbar{
+    width: 65%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-top: 10px;
+    height: 51px;
+    background-color: #ffffff;
+}
+
+.category{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px;
+}
+
+
+
+@media(max-width:1125px) {
+    .navbar{
+        width: 100%;
+        height: auto;
+    }
+    .coupon{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        font-size: 11px;
+        margin-bottom: 5px;
+    }
+    .second-layer-navbar{
+        display: block;
+        width: 100%;
+    }
+    .third-layer-navbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .search-icon{
+        padding: 2px;
+        margin-right: 5px;
+
+    }
+    .fourth-layer-navbar{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 2.5px;
+        width: 100%;
+        height: 55px;
+    }
+
+    .category{
+        padding: 5px;
+    }
+    
+}
+
+/* Hero section begins here */
+.hero{
+    display: grid;
+    grid-template-columns: 63% 37%;
+    width: 59%;
+    margin: auto;
+    margin-top: 5px;
+    height: auto;
+}
+
+@media(max-width:1125px) {
+    .hero{
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+
+
