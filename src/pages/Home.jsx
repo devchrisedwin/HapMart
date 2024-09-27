@@ -27,6 +27,10 @@ function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
   const [filterproduct, setFilterProduct] = useState(allProducts)
   const [flashProductSelected, setFlashProductSelected] = useState('')
   const [ProductSelected, setProductSelected] = useState('')
+  const [page, setPage] = useState(1)
+
+  let noItem = 2
+  
 
   
 
@@ -47,7 +51,15 @@ function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
     console.log(filtteredProduct)
     setFilterProduct(filtteredProduct)
   }
-  
+
+  function handlePageSelection(selectedPage) {
+    if(selectedPage >= 1 && selectedPage !== page && selectedPage <= Math.ceil(filterproduct.length / 4)) {
+      setPage(selectedPage)
+    }
+    
+  }
+
+ 
   
 
   useEffect(() => {
@@ -170,7 +182,7 @@ function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
           </div>
 
           <div className='lg:flex flex-wrap mt-5 w-[90%] m-[auto]'>
-            {filterproduct.map((product) => (
+            {filterproduct.slice(page * 4 - 4, page * 4).map((product) => (
                 <div key={product.id} className='border lg:w-[191px] w-[100%] ml-2 mb-2'onMouseEnter={() => revealProductAddToCart (product.id)}>
                   <div className='mb-3'>
                     <img src={product.image} alt="" className='w-[100px] h-[130px] pt-7 m-[auto]' />
@@ -195,6 +207,26 @@ function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
        
       </div>
 
+        {/* adding pagination */}
+        {
+            filterproduct.length && (
+              <div className='flex justify-center items-center p-2 mb-2'>
+              <span className='border m-2 p-2 font-bold cursor-pointer' onClick={()=> handlePageSelection(page - 1)}>prev</span>
+              {
+                
+                [...Array(Math.ceil(filterproduct.length / 4))].map((_,i) => {
+                  return (
+                  <span
+                  className={page === i + 1 ? 'border p-2 m-1 bg-[#DB4444] text-white cursor-pointer' : "'border p-2 m-1 cursor-pointer"} 
+                  onClick={() => handlePageSelection(i + 1)} key={i}>{i + 1}</span>
+                  ) 
+                })
+              }
+              
+              <span className='border m-2 p-2 font-bold cursor-pointer' onClick={()=> handlePageSelection(page + 1)}>Next</span>
+              </div>
+            )
+        }
     </div>
   )
 }
