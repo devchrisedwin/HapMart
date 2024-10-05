@@ -55,6 +55,7 @@ function CartItemProvider( {children} ) {
         let cpyOfItem = [...cartItem]
         let indextOfItem = cpyOfItem.findIndex((item) => item.name === product.name)
         cpyOfItem.splice(indextOfItem, 1)
+        setCartQuantity(cartQuantity - 1)
         setCartItem(cpyOfItem)
         // localStorage.setItem('items', JSON.stringify(cpyOfItem))
         // localStorage.setItem('cquantity', JSON.stringify(cartQuantity - 1))
@@ -71,8 +72,7 @@ function CartItemProvider( {children} ) {
 
      {/*handling rerendering of page anytime handleRemove function is called*/}
     //  useEffect(()=> {
-    //     setCartQuantity(JSON.parse(localStorage.getItem('cquantity') || 0))
-    //     return () => {}
+    //     setCartQuantity(cartQuantity)
         
     // },[handleRemove])
 
