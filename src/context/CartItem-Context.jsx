@@ -56,25 +56,25 @@ function CartItemProvider( {children} ) {
         let indextOfItem = cpyOfItem.findIndex((item) => item.name === product.name)
         cpyOfItem.splice(indextOfItem, 1)
         setCartItem(cpyOfItem)
-        localStorage.setItem('items', JSON.stringify(cpyOfItem))
-        localStorage.setItem('cquantity', JSON.stringify(cartQuantity - 1))
+        // localStorage.setItem('items', JSON.stringify(cpyOfItem))
+        // localStorage.setItem('cquantity', JSON.stringify(cartQuantity - 1))
         
     }
 
     {/*fecthing add to cart items from localstorage to avoid lost of data on page reload*/}
-    useEffect(()=> {
-        setCartItem(JSON.parse(localStorage.getItem('items') || []))
-        setCartQuantity(JSON.parse(localStorage.getItem('cquantity') || 0))
-        return () => {}
-    }, [])
+    // useEffect(()=> {
+    //     setCartItem(JSON.parse(localStorage.getItem('items') || []))
+    //     setCartQuantity(JSON.parse(localStorage.getItem('cquantity') || 0))
+    //     return () => {}
+    // }, [])
 
 
      {/*handling rerendering of page anytime handleRemove function is called*/}
-     useEffect(()=> {
-        setCartQuantity(JSON.parse(localStorage.getItem('cquantity') || 0))
-        return () => {}
+    //  useEffect(()=> {
+    //     setCartQuantity(JSON.parse(localStorage.getItem('cquantity') || 0))
+    //     return () => {}
         
-    },[handleRemove])
+    // },[handleRemove])
 
 
     
