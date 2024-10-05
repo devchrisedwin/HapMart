@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import { Route, Routes } from 'react-router-dom'
 import CartItem from './pages/CartItem'
 import ProductDetails from './pages/ProductDetails'
+import WishList from './pages/WishList'
 
 function App() {
   const [menu, setMenu] = useState(false)
@@ -19,6 +20,7 @@ function App() {
        <Route path='/' element={<Home menu={menu} isLogin={isLogin} setIsLogin={setIsLogin} userAuthPopUp={userAuthPopUp}/>}/>
        <Route path='/cart' element={<CartItem/>}/>
        <Route path='/product/:name' element={<ProductDetails/>}/>
+       <Route path='/wishlist' element={<WishList/>}/>
      </Routes>
      
     </>

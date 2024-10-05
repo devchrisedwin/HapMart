@@ -7,11 +7,13 @@ import { Link } from 'react-router-dom'
 import { IoIosArrowDown, IoIosArrowUp, IoIosLocate, IoIosMap } from "react-icons/io";
 import { FiFacebook, FiHeadphones, FiHeart, FiImage, FiMapPin, FiPhoneCall, FiSearch, FiShoppingCart, FiTwitter, FiUploadCloud, FiUser, FiYoutube } from "react-icons/fi";
 import { cartItemContext } from '../context/CartItem-Context'
+import { wishList } from '../context/WishList-Context'
 
 
 
 function Navbar({menu, setMenu, userAuthPopUp, setUserAuthPopUp}) {
     const {cartQuantity} = useContext(cartItemContext)
+    const {wishListCount} = useContext(wishList)
 
     const [currency, setCurrency] = useState(false)
     const [language, setLanguage] = useState(false)
@@ -81,7 +83,12 @@ function Navbar({menu, setMenu, userAuthPopUp, setUserAuthPopUp}) {
                             <div className='cart-count'>{cartQuantity}</div>
                         </div>
                     </Link>
-                    <div><FiHeart color='white' className='cursor-pointer' /></div>
+                    <Link to='/wishlist'>
+                        <div className='cart'>
+                            <FiHeart color='white' className='cursor-pointer' />
+                            <div className='cart-count'>{wishListCount}</div>
+                        </div>
+                    </Link>
                     <div onClick={()=>setUserAuthPopUp(!userAuthPopUp)}><FiUser color='white' className='cursor-pointer' /></div>
                 </div>
 

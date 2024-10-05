@@ -16,16 +16,19 @@ function CartItemProvider( {children} ) {
     function handleAddToCart(product) {
         {/*//add to cart funtionality begins here*/}
         let cpyCartItem = [...cartItem]
-        const findIndexOfItem = cpyCartItem.findIndex(cartItem=>cartItem.id === product.id)
+        const findIndexOfItem = cpyCartItem.findIndex(cartItem=>cartItem.name === product.name)
+
+        
         if(findIndexOfItem === -1) {
             cpyCartItem.push({
                 ...product,
                 quantity:1,
                 totalPrice: product.price
             })
-            setCartQuantity(cartQuantity + 1)
+            setCartQuantity(cartQuantity + 1) 
         }
       setCartItem(cpyCartItem)
+      
 
       {/*//saving the newly add to cart products into localstorage*/}
       localStorage.setItem('items', JSON.stringify(cpyCartItem))
@@ -50,7 +53,7 @@ function CartItemProvider( {children} ) {
     {/*//handling cart product removal on button clicked*/}
     function handleRemove(product) {
         let cpyOfItem = [...cartItem]
-        let indextOfItem = cpyOfItem.findIndex((item) => item.id === product.id)
+        let indextOfItem = cpyOfItem.findIndex((item) => item.name === product.name)
         cpyOfItem.splice(indextOfItem, 1)
         setCartItem(cpyOfItem)
         localStorage.setItem('items', JSON.stringify(cpyOfItem))
@@ -58,16 +61,21 @@ function CartItemProvider( {children} ) {
         
     }
 
-    {/*handling rerendering of page anytime handleRemove function is called*/}
-    useEffect(()=> {
-        setCartQuantity(JSON.parse(localStorage.getItem('cquantity') || 0))
-    },[handleRemove])
-
     {/*fecthing add to cart items from localstorage to avoid lost of data on page reload*/}
     useEffect(()=> {
         setCartItem(JSON.parse(localStorage.getItem('items') || []))
         setCartQuantity(JSON.parse(localStorage.getItem('cquantity') || 0))
+        return () => {}
     }, [])
+
+
+     {/*handling rerendering of page anytime handleRemove function is called*/}
+     useEffect(()=> {
+        setCartQuantity(JSON.parse(localStorage.getItem('cquantity') || 0))
+        return () => {}
+        
+    },[handleRemove])
+
 
     
     {/*//calculating grand total price8*/}
@@ -82,7 +90,7 @@ function CartItemProvider( {children} ) {
 
     return (
       <cartItemContext.Provider value={{cartItem, cartQuantity, 
-      handleAddToCart,handleIncrease, handleDecrease,handleRemove, totalp }}>
+      handleAddToCart,handleIncrease, handleDecrease,handleRemove, totalp, cartItem }}>
         {children}
       </cartItemContext.Provider>
     )

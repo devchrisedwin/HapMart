@@ -13,12 +13,16 @@ import wallet from '../assets/images/CreditCard.png'
 import headphone from '../assets/images/Headphones.png'
 import { cartItemContext } from '../context/CartItem-Context'
 import { productDetailContext } from '../context/ProductDetail-Context'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { FiHeart } from 'react-icons/fi'
+import { wishList } from '../context/WishList-Context'
+import CartItem from './CartItem'
 
 
 function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
-  const {handleAddToCart} = useContext(cartItemContext)
-  const {handleDetails} = useContext(productDetailContext)
+  const {handleAddToCart, cartItem} = useContext(cartItemContext)
+  const {handleDetails, productDetails} = useContext(productDetailContext)
+  const {handleAddToWishList} = useContext(wishList)
 
   const [expiringDate, setExperingDate] = useState(16)
   const [hour, setHour] = useState(24)
@@ -31,8 +35,8 @@ function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
   const [flashProductSelected, setFlashProductSelected] = useState('')
   const [ProductSelected, setProductSelected] = useState('')
   const [page, setPage] = useState(1)
-
-  let noItem = 2
+  
+  
   
 
   
@@ -53,6 +57,7 @@ function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
     })
     console.log(filtteredProduct)
     setFilterProduct(filtteredProduct)
+    setPage(1)
   }
 
   function handlePageSelection(selectedPage) {
@@ -92,7 +97,6 @@ function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
     return () => clearInterval(interval)
   },[expiringDate,hour,minute,seconds])
  
-
 
   
   
@@ -144,28 +148,39 @@ function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
            Flash Sales {`${expiringDate}d : ${hour}h : ${minute}m : ${seconds}s`}
           </div>
 
-          <div className='lg:flex mt-5 w-[90%] m-[auto]'>
+          <div className='lg:flex mt-5 w-[100%] m-[auto]'>
             {flashSale.map((flashItem) => (
-                <div key={flashItem.id} className='border lg:w-[191px] w-[100%] ml-2 mb-2 lg:mb-0'onMouseEnter={() => revealFlashSaleAddToCart (flashItem.id)}>
+                <div key={flashItem.id} className='border lg:w-[250px] w-[100%] lg:ml-2 mb-2 lg:mb-0'onMouseEnter={() => revealFlashSaleAddToCart (flashItem.id)}>
                   <div className='relative'>
                     <img src={flashItem.image} alt="" className='w-[100px] h-[130px] pt-7 m-[auto]' />
                     <p className='absolute top-0 left-0 bg-[#DA4444] text-[#fff] p-1'>{flashItem.promo}</p>
                   
                     {flashProductSelected === flashItem.id ? 
-                      <button onClick={() => handleAddToCart(flashItem)} className='bg-black lg:w-[190px] w-[100%] m-[auto] p-1 text-[#fff]'>Add to cart</button>
+                      <button
+                        disabled={cartItem.findIndex(item => item.name === flashItem.name) > -1}
+                        onClick={() => handleAddToCart(flashItem)} 
+                        className={"bg-black w-[100%] m-[auto] p-1 text-[#fff] disabled:opacity-[0.4]"}>
+                          Add to cart
+                      </button>
                       : ""
                     }
-                    
                   </div>
 
                   <div>
                     <p className='font-bold'>{flashItem.name}</p>
                     <p className='text-[#DA4444] font-bold'>{`$${flashItem.price}`} <del className='text-gray-600'>$160</del></p>
+                    <div title='add to wishlist'>
+                      <FiHeart onClick={() => handleAddToWishList(flashItem)} color='red' className='cursor-pointer size-6' />
+                    </div>
                     <div className="flex items-center">
                        <FiStar color='#FA8232' fill='#FA8232'/><FiStar color='#FA8232' fill='#FA8232'/><FiStar color='#FA8232' fill='#FA8232'/><FiStar color='#FA8232'/>
                        <p>{`(${flashItem.totalrating})`}</p>
                     </div>
-                    
+                    <Link to={`/product/${flashItem.name}`}>
+                      <button className='border p-2 mb-1 font-bold' onClick={()=>handleDetails(flashItem)}>
+                        View Product
+                      </button>
+                    </Link>
                   </div>
                 </div>
             ))}
@@ -184,13 +199,17 @@ function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
            Explore our Products
           </div>
 
-          <div className='lg:flex flex-wrap mt-5 w-[90%] m-[auto]'>
-            {filterproduct.slice(page * 4 - 4, page * 4).map((product) => (
-                <div key={product.id} className='border lg:w-[191px] w-[100%] ml-2 mb-2'onMouseEnter={() => revealProductAddToCart (product.id)}>
+          <div className='lg:flex flex-wrap mt-5 w-[100%] m-[auto]'>
+            {
+            filterproduct.slice(page * 4 - 4, page * 4).map((product) => (
+                <div key={product.id} className='border lg:w-[250px] w-[100%] lg:ml-2 mb-2'onMouseEnter={() => revealProductAddToCart (product.id)}>
                   <div className='mb-3'>
                     <img src={product.image} alt="" className='w-[100px] h-[130px] pt-7 m-[auto]' />
                     {ProductSelected === product.id ? 
-                      <button onClick={()=> handleAddToCart(product)} className='bg-black lg:w-[190px] w-[100%] m-[auto] p-1 text-[#fff]'>Add to cart</button>
+                      <button
+                      disabled={cartItem.findIndex(item => item.name === product.name) > -1}
+                      onClick={()=> handleAddToCart(product)} 
+                      className='bg-black w-[100%] m-[auto] p-1 text-[#fff] disabled:opacity-[0.4]'>Add to cart</button>
                       : ""
                     }
                     
@@ -202,10 +221,18 @@ function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
                     <div className="flex items-center mb-2">
                        <FiStar color='#FA8232' fill='#FA8232'/><FiStar color='#FA8232' fill='#FA8232'/><FiStar color='#FA8232' fill='#FA8232'/><FiStar color='#FA8232' fill='#FA8232'/>
                     </div>
-                    <Link to={`/product/${product.name}`}><button className='border p-2 mb-1' onClick={()=>handleDetails(product)}>View Product</button></Link>
+                    <div title='add to wishlist'>
+                      <FiHeart onClick={() => handleAddToWishList(product)} color='red' className='cursor-pointer size-6' />
+                    </div>
+                    <Link to={`/product/${product.name}`}>
+                      <button className='border p-2 mb-1 font-bold' onClick={()=>handleDetails(product)}>
+                        View Product
+                      </button>
+                    </Link>
                   </div>
                 </div>
-            ))}
+            ))
+            }
           </div>
         </div>
        
@@ -221,7 +248,7 @@ function Home({menu, isLogin, setIsLogin, userAuthPopUp }) {
                 [...Array(Math.ceil(filterproduct.length / 4))].map((_,i) => {
                   return (
                   <span
-                  className={page === i + 1 ? 'border p-2 m-1 bg-[#DB4444] text-white cursor-pointer' : "'border p-2 m-1 cursor-pointer"} 
+                  className={page === i + 1 ? 'border p-2 m-1 bg-[#DB4444] text-white cursor-pointer' : "border p-2 m-1 cursor-pointer"} 
                   onClick={() => handlePageSelection(i + 1)} key={i}>{i + 1}</span>
                   ) 
                 })

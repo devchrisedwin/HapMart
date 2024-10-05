@@ -20,22 +20,22 @@ function CartItem() {
      {cartItem && cartItem?.length > 0 ?
      
       cartItem.map((item) => (
-        <div key={item.id} className="lg:grid lg:grid-cols-4 lg:w-[80%] lg:m-[auto] w-[100%] mb-9 lg:mb-0 lg:border-none border border-red-950">
-            <div className="border lg:p-3">
-                <div className="flex justify-between items-center mt-4 border lg:w-[300px] w-[200px] m-[auto] pl-4 lg:pr-6">
-                    <img src={item.image} className="w-9"/>
+        <div key={item.name} className="border lg:grid lg:grid-cols-4 lg:w-[80%] lg:m-[auto] w-[100%] mb-9 lg:mb-4   border-red-950">
+            <div className="lg:p-5">
+                <div className="flex justify-between items-center mt-4 lg:w-[300px] w-[200px] m-[auto] pl-4 lg:pr-6">
+                    <img src={item.image} className="w-12"/>
                     <p>{item.name}</p>
                 </div>
                 
             </div>
 
-            <div className="border text-center  flex flex-col items-center justify-center">
+            <div className="text-center  flex flex-col items-center justify-center">
                 <p className="mt-4">{`$${item.price}`}</p>
             </div>
 
-            <div className="border p-3">
-                <div className="flex border justify-evenly items-center mt-4">
-                    <p className="w-[50px] border text-center">{item.quantity}</p>
+            <div className="p-7">
+                <div className="flex justify-evenly items-center mt-4 border w-[350px]">
+                    <p className="w-[100px] text-center">{`Quantity: ${item.quantity}`}</p>
                     <button 
                         onClick={()=> handleIncrease(item.id)} 
                         className="bg-red-700 text-white text-[20px] w-9">
@@ -56,7 +56,7 @@ function CartItem() {
 
             </div>
 
-            <div className="border text-center  flex flex-col items-center justify-center">
+            <div className="text-center  flex flex-col items-center justify-center">
                 <p className="text-center mt-4 flex flex-col items-center">{`$${item.totalPrice.toFixed(2)}`}</p>
             </div>
         </div>
@@ -88,8 +88,8 @@ function CartItem() {
                 <p>Total</p>
                 <p>{`$${totalp.toFixed(2)}`}</p>
             </div>
-            <div className="w-[200px] m-[auto] mb-4 border">
-                <button className="p-3 bg-[#DB4444] text-white font-extrabold text-center">Process to Checkout</button>
+            <div  className="w-[200px] m-[auto] mb-4">
+                <button disabled={cartItem.length === 0} className=" disabled:opacity-60 p-3 bg-[#DB4444] text-white font-extrabold text-center">Process to Checkout</button>
             </div>
             
         </div>

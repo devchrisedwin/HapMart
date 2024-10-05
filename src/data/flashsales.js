@@ -9,8 +9,8 @@ import gamingpad from '../assets/images/gamepad2.png'
 
 const flashProduct = [
     {
-        id:1,
-        name: 'Hp Probook',
+        id:123,
+        name: 'Hp_Probook',
         image: laptop,
         category: 'Computer & Laptop',
         type: 'laptop',
@@ -21,7 +21,7 @@ const flashProduct = [
         totalrating: 86,
     },
     {
-        id:2,
+        id:456,
         name: 'Gamepad',
         image: gamingpad,
         category: 'Gaming Console',
@@ -33,7 +33,7 @@ const flashProduct = [
         totalrating: 96,
     },
     {
-        id:3,
+        id:789,
         name: 'Keyboard',
         image: keyboard,
         category: 'Accessories',
@@ -45,8 +45,8 @@ const flashProduct = [
         totalrating: 66,
     },
     {
-        id:4,
-        name: 'Iphone 12 pro',
+        id:101,
+        name: 'Iphone12pro',
         image: smartphone,
         category: 'smartphone',
         type: 'smartphone',

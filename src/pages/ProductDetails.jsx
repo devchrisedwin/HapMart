@@ -8,28 +8,35 @@ import { cartItemContext } from "../context/CartItem-Context"
 
 
 function ProductDetails() {
-    const {productDetails} = useContext(productDetailContext)
+    const {productDetails, handleDetails} = useContext(productDetailContext)
     const {handleAddToCart} = useContext(cartItemContext)
 
-   const navigate = useNavigate()
+    const {name} = useParams()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(name !== productDetails.name ){
+            navigate('/')
+        }
+        return () => {}
+    },[name])
+
 
     return (
-        <div className="border w-[60%] h-[500px] m-[auto]">
-           {
-            productDetails.name !== undefined  ?
-            <div className="flex justify-evenly items-center">
-                <div className="border w-[350px] h-[350px] flex justify-center items-center mt-[75px]">
-                    <img src={productDetails.image} className="w-[250px]"/>
+        <div className="border lg:w-[60%] lg:h-[500px] m-[auto]">
+           {productDetails.name &&
+            <div className="lg:flex justify-evenly items-center">
+                <div className="w-[350px] h-[350px] lg:flex justify-center items-center mt-[75px]">
+                    <img src={productDetails.image} className="w-[250px] m-[auto]"/>
                 </div>
-                <div className="border w-[350px] p-3">
+                <div className="border lg:w-[350px] p-3 mt=[85px]">
                     <p className="p-2 font-bold">{productDetails.name}</p>
                     <p className="p-2 font-bold">{productDetails.description}</p>
                     <p className="p-2 font-bold">{`$${productDetails.price}`}</p>
-                    <p className="p-2 font-bold">{productDetails.arrival} arrival</p>
                     <button onClick={()=>handleAddToCart(productDetails)} className="border p-2 mr-2">Add to cart</button>
                     <Link to='/'><button className="border p-2">Home</button></Link>
                 </div>
-            </div> : navigate('/')
+            </div>
            }
         </div>
     )
