@@ -1,4 +1,4 @@
-import { children, createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 
 export const cartItemContext = createContext(null)
@@ -7,7 +7,7 @@ export const cartItemContext = createContext(null)
 function CartItemProvider( {children} ) {
     const [cartItem, setCartItem] = useState([])
     const [cartQuantity, setCartQuantity] = useState(0)
-    const [total, setTotal] = useState(0)
+    
 
     {/*// grand total price variable*/}
     let totalp = 0
@@ -31,8 +31,8 @@ function CartItemProvider( {children} ) {
       
 
       {/*//saving the newly add to cart products into localstorage*/}
-      localStorage.setItem('items', JSON.stringify(cpyCartItem))
-      localStorage.setItem('cquantity', JSON.stringify(cartQuantity + 1))
+    //   localStorage.setItem('items', JSON.stringify(cpyCartItem))
+    //   localStorage.setItem('cquantity', JSON.stringify(cartQuantity + 1))
       
     }
 
@@ -55,8 +55,8 @@ function CartItemProvider( {children} ) {
         let cpyOfItem = [...cartItem]
         let indextOfItem = cpyOfItem.findIndex((item) => item.name === product.name)
         cpyOfItem.splice(indextOfItem, 1)
-        setCartQuantity(cartQuantity - 1)
         setCartItem(cpyOfItem)
+        setCartQuantity(cartQuantity - 1)
         // localStorage.setItem('items', JSON.stringify(cpyOfItem))
         // localStorage.setItem('cquantity', JSON.stringify(cartQuantity - 1))
         
